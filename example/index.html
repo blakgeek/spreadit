@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Spreadit Demo</title>
-    <link href="../dist/spreadIt.css" type="text/css" rel="stylesheet">
+    <link href="../dev/spreadIt.css" type="text/css" rel="stylesheet">
     <style>
         html, body {
             height: 100%;
@@ -58,7 +58,7 @@
 <script src="../bower_components/angular/angular.min.js"></script>
 <script src="../bower_components/js-xlsx/dist/xlsx.full.min.js"></script>
 <script src="../bower_components/papaparse/papaparse.min.js"></script>
-<script src="../dist/spreadit.js"></script>
+<script src="../dev/spreadit.js"></script>
 <script>
     angular.module('demo', ['bg.spreadit']).controller('DemoCtrl', function($scope) {
 
@@ -67,20 +67,21 @@
         };
 
         this.columns = [
+            // matches becasue of title
+            {
+                title: 'Email',
+                property: 'emailAddress'
+            },
+            // matches because of property
+            {
+                title: 'Last Name',
+                property: 'last_name'
+            },
+            // matches because of alias
             {
                 title: 'First Name',
                 property: 'firstName',
-                aliases: ['fname', 'first']
-            },
-            {
-                title: 'Last Name',
-                property: 'lastName',
-                aliases: ['lname', 'last']
-            },
-            {
-                title: 'Email',
-                property: 'email',
-                aliases: ['e-mail', 'email address']
+                aliases: ['first_name', 'first']
             }
         ]
     });

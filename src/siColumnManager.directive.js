@@ -78,6 +78,13 @@
             var presult;
             var $file;
 
+            $scope.$watch('hasHeader', function() {
+
+                if($file && self.active) {
+                    parseFile($file);
+                }
+            });
+
             this.remap = function (mapping) {
 
                 remap(mapping);
@@ -92,16 +99,18 @@
 
             function isHeader(values) {
 
-                return values.some(function (value) {
+                var isIt = $scope.hasHeader || values.some(function (value) {
                     return titles.indexOf(String(value).trim().toLowerCase()) !== -1;
                 });
+                $scope.hasHeader = isIt;
+                return isIt;
             }
 
             function isExcel(data) {
                 return [0xD0, 0x09, 0x3C, 0x50].indexOf(data.charCodeAt(0)) !== -1;
             }
 
-            function parseFile(file, hasHeader) {
+            function parseFile(file) {
 
                 if (!file) {
                     return;
@@ -111,16 +120,16 @@
                 reader.onload = function (e) {
                     var content = e.target.result;
                     if (supports.xls && isExcel(content)) {
-                        preparseExcel(content, hasHeader);
+                        preparseExcel(content);
                     } else if (supports.csv) {
-                        preparseCSV(file, hasHeader);
+                        preparseCSV(file);
                     }
                 };
 
                 reader.readAsBinaryString(file);
             }
 
-            function preparseExcel(content, hasHeader) {
+            function preparseExcel(content) {
 
                 var c;
                 var workbook = XLSX.read(content, {
@@ -352,8 +361,6 @@
                             property: column
                         }
                     }));
-                    self.active = true;
-                    $element.addClass('active');
                     presult = result;
                 });
             }
@@ -382,6 +389,7 @@
 
                 if (file && id === $scope.id) {
                     $file = file;
+                    $scope.hasHeader = false;
                     parseFile(file);
                     self.active = true;
                     $element.addClass('active');

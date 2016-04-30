@@ -1,3 +1,6 @@
+$siPositiveColor: #52a552 !default;
+$siPositiveBorder: darken(adjust-hue($siPositiveColor, -10), 5%) !default;
+
 si-column-manager {
 
     ul {
@@ -19,28 +22,109 @@ si-column-manager {
         visibility: visible;
     }
 
-    .si-column-manager-actions {
+    header {
 
-        @include display(flex);
-        @include justify-content(flex-end);
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: 10px auto;
+    }
+
+    footer {
+
         position: absolute;
         bottom: 0;
         right: 0;
         left: 0;
-        margin: 0 auto 20px;
+        margin: 10px auto;
+    }
+
+    .si-toggle {
+        @include display(flex);
+        @include align-items(center);
+        white-space: nowrap;
+
+        input[type="checkbox"] {
+            @include appearance(none);
+            display: none;
+
+            &:checked + i {
+                background-color: $siPositiveColor;
+                &:after {
+                    right: 0;
+                    left: auto;
+                }
+            }
+        }
+
+        i {
+            @include flex(0 0 40px);
+            height: 25px;
+            position: relative;
+            background-color: #f0f0f0;
+            border-radius: 25px;
+            margin-right: 8px;
+
+            &:after {
+                content: '';
+                display: block;
+                background-color: white;
+                border-radius: 20px;
+                height: 21px;
+                width: 21px;
+                margin: 2px;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+
+    .si-column-manager-actions {
+
+        @include display(flex);
+        @include justify-content(flex-end);
+        @include align-items(center);
         width: calc(100% - 40px);
         max-width: 800px;
 
-        li:first-of-type {
-            margin-right: auto;
-        }
 
         button {
-            height: 50px;
-            //margin-left: 10px;
+            height: 40px;
+            padding: 0 20px;
             font-size: inherit;
-
+            font-family: inherit;
         }
+
+        .si-has-header {
+            margin-right:  auto;
+        }
+
+        .si-close {
+
+            line-height: 40px;
+            width: 40px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(black, .05);
+            }
+        }
+
+        .si-import {
+
+            background-color: $siPositiveColor;
+            color: white;
+            text-shadow: 0 1px 1px rgba(black, .03);
+            border: 1px solid $siPositiveBorder;
+            border-radius: 4px;
+        }
+
     }
 
     .si-column-manager-columns {
@@ -50,7 +134,7 @@ si-column-manager {
         top: 0;
         bottom: 0;
         position: absolute;
-        margin: 60px auto 80px;
+        margin: 60px auto 60px;
         width: calc(100% - 40px);
         max-width: 800px;
         counter-reset: column-counter;

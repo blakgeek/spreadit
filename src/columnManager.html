@@ -1,3 +1,7 @@
+<header class="si-column-manager-actions">
+    <label class="si-toggle si-has-header"><input type="checkbox" ng-model="hasHeader"><i></i> First Row Is A Header</label>
+    <span class="si-close" ng-click="vm.cancel()">&times;</span>
+</header>
 <ul class="si-column-manager-columns">
     <li ng-repeat="column in vm.preview track by $index" class="si-column-manager-column"
         ng-class="{'si-column-ignored': column.mapping.property === '$skip$'}">
@@ -21,11 +25,6 @@
         </div>
     </li>
 </ul>
-<ul class="si-column-manager-actions">
-    <li>
-        <button class="negative" ng-click="vm.cancel()">Cancel</button>
-    </li>
-    <li>
-        <button class="positive" ng-click="vm.remap(vm.preview)">Import</button>
-    </li>
-</ul>
+<footer class="si-column-manager-actions">
+    <button class="si-import" ng-click="vm.remap(vm.preview)">Import</button>
+</footer>

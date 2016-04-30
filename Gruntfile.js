@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         },
         open: {
             example: {
-                url: 'http://localhost:9099/example/example.html'
+                url: 'http://localhost:9099/example/index.html'
             }
         },
         copy: {
