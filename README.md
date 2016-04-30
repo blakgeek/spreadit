@@ -1,5 +1,5 @@
 # Spreadit
-## An angular directive inspired by the guys at [Conference Badge](https://www.conferencebadge.com/) for importing a spreadsheet 100% in the browser inspired.
+## An angular directive inspired by the guys at [Conference Badge](https://www.conferencebadge.com/) for importing a spreadsheet 100% in the browser.
 
 ##<a name="install"></a> Install
 
