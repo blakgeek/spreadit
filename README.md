@@ -13,6 +13,10 @@
 
 ```html
 <script src="angular(.min).js"></script>
+<!-- needed to support csv -->
+<script src="papaparse.min.js"></script>
+<!-- needed to support Excel -->
+<script src="xlsx.full.min.js"></script>
 <script src="spreadit(.min).js"></script>
 ```
 
