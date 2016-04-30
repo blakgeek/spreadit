@@ -26,7 +26,9 @@
 
             var element = $element[0];
             var fileEl = $element;
-            var isFileInput = element.tagName.toLowerCase() === 'input' && $attrs.type && $attrs.type.toLowerCase() === 'file';
+            var tagName = element.tagName.toLowerCase();
+            var isFileInput = tagName === 'input' && $attrs.type && $attrs.type.toLowerCase() === 'file';
+            var isLink = tagName === 'a';
 
             if (!isFileInput) {
                 fileEl = angular.element('<input type="file">');
@@ -35,9 +37,14 @@
                     .css('width', '0px').css('height', '0px').css('border', 'none')
                     .css('margin', '0px').css('padding', '0px').attr('tabindex', '-1');
                 document.body.appendChild(label.append(fileEl)[0]);
-                $element.on('click', function() {
+                $element.on('click', function(e) {
+                    e.preventDefault();
                     fileEl[0].click();
                 });
+            }
+
+            if(isLink) {
+                $element.attr('href', 'javascript:');
             }
 
             fileEl.attr('accepts', accepts.join());
