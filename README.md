@@ -44,4 +44,6 @@ app.controller('MyCtrl', ['$scope', function ($scope, Upload) {
 ```
 
 Working Examples:
-* [Example I](https://jsfiddle.net/blakgeek/vumyL0x1/)
+* [Basic Example](https://jsfiddle.net/blakgeek/vumyL0x1/)
+* [Configure Columns](https://jsfiddle.net/blakgeek/q50cLjnz/)
+* [Restrict Columns](https://jsfiddle.net/blakgeek/y2yfqydp/)
