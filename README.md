@@ -13,7 +13,6 @@
 <script src="spreadit(.min).js"></script>
 ```
 
-
 Example HTML:
 ```html
 <script src="angular.min.js"></script>
@@ -43,3 +42,6 @@ app.controller('MyCtrl', ['$scope', function ($scope, Upload) {
     };
 }]);
 ```
+
+Working Examples:
+* [Example I](https://jsfiddle.net/blakgeek/vumyL0x1/)
