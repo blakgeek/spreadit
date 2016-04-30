@@ -31,7 +31,16 @@
             box-sizing: border-box;
             width: calc(100% - 200px);
             margin: 0 auto;
-            height: calc(100%);
+            height: calc(100% - 200px);
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+        }
+        si-importer {
+            margin: auto;
         }
     </style>
 </head>
@@ -43,6 +52,9 @@
 <button si-file-select="sampleSize">Custom Sample Size</button>
 </div>
 <textarea id="results"></textarea>
+<footer>
+    <si-importer si-id="free"></si-importer>
+</footer>
 <si-column-manager si-id="sampleSize" si-change="vm.onChange($data, $file)" si-sample-size="5"></si-column-manager>
 <si-column-manager si-id="free" si-change="vm.onChange($data, $file)"></si-column-manager>
 <si-column-manager si-id="headers"

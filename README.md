@@ -1,6 +1,9 @@
 # Spreadit
 ## An angular directive inspired by the guys at [Conference Badge](https://www.conferencebadge.com/) for importing a spreadsheet 100% in the browser.
 
+![It's A Screenshot!](screenshot.png)
+![It's Another Screenshot!](importer-screenshot.png)
+
 ##<a name="install"></a> Install
 
 * <a name="manual"></a>**Manual**: download latest from [here](https://github.com/blakgeek/spreadit/releases/latest)
