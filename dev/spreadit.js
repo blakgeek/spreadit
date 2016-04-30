@@ -78,7 +78,7 @@
             })).map(function (v) {
                 return String(v).trim().toLowerCase();
             });
-//             var element = $element[0];
+
             var presult;
             var $file;
 
@@ -105,7 +105,7 @@
                 return [0xD0, 0x09, 0x3C, 0x50].indexOf(data.charCodeAt(0)) !== -1;
             }
 
-            function parseFile(file) {
+            function parseFile(file, hasHeader) {
 
                 if (!file) {
                     return;
@@ -115,16 +115,16 @@
                 reader.onload = function (e) {
                     var content = e.target.result;
                     if (supports.xls && isExcel(content)) {
-                        preparseExcel(content);
+                        preparseExcel(content, hasHeader);
                     } else if (supports.csv) {
-                        preparseCSV(file);
+                        preparseCSV(file, hasHeader);
                     }
                 };
 
                 reader.readAsBinaryString(file);
             }
 
-            function preparseExcel(content) {
+            function preparseExcel(content, hasHeader) {
 
                 var c;
                 var workbook = XLSX.read(content, {
@@ -134,7 +134,7 @@
                     cellFormula: false
                 });
                 var sheet = workbook.Sheets[workbook.SheetNames[0]];
-                var headerRange = XLSX.utils.decode_range(workbook.Sheets.Sheet1['!ref']);
+                var headerRange = XLSX.utils.decode_range(sheet['!ref']);
                 var firstRow = [];
                 var r = headerRange.s.r;
                 for (c = headerRange.s.c; c < headerRange.e.c; c++) {
@@ -239,7 +239,7 @@
                     cellFormula: false
                 });
                 var sheet = workbook.Sheets[workbook.SheetNames[0]];
-                var headerRange = XLSX.utils.decode_range(workbook.Sheets.Sheet1['!ref']);
+                var headerRange = XLSX.utils.decode_range(sheet['!ref']);
                 var firstRow = [];
                 var r = headerRange.s.r;
                 for (c = headerRange.s.c; c < headerRange.e.c; c++) {
