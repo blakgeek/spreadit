@@ -1,0 +1,216 @@
+si-column-manager {
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    background-color: rgba(white, .95);
+    z-index: 2000;
+
+    &.active {
+        visibility: visible;
+    }
+
+    .si-column-manager-actions {
+
+        @include display(flex);
+        @include justify-content(flex-end);
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: 0 auto 20px;
+        width: calc(100% - 40px);
+        max-width: 800px;
+
+        li:first-of-type {
+            margin-right: auto;
+        }
+
+        button {
+            height: 50px;
+            //margin-left: 10px;
+            font-size: inherit;
+
+        }
+    }
+
+    .si-column-manager-columns {
+
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        margin: 60px auto 80px;
+        width: calc(100% - 40px);
+        max-width: 800px;
+        counter-reset: column-counter;
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        box-shadow: 0 0 20px -4px rgba(0,0,0,.2);
+        overflow-y: auto;
+        background-color: white;
+
+        .si-column-manager-column {
+            @include display(flex);
+            border: 1px solid #ccc;
+            border-bottom: none;
+            //margin-bottom: 20px;
+
+            &.si-column-ignored {
+
+                .si-column-manager-samples {
+                    text-decoration: line-through;
+                    color: #ccc;
+                }
+            }
+        }
+    }
+
+    .si-column-manager-samples {
+
+        counter-reset: sample-counter;
+        @include flex-grow(1);
+        position: relative;
+
+        .si-column-manager-sample-title {
+            font-weight: bold;
+            font-size: 20px;
+
+            &:before {
+                line-height: 40px !important;
+            }
+        }
+
+        li:last-of-type {
+            border-bottom: none !important;
+        }
+
+        .si-column-manager-sample-header {
+
+            background-color: #e8e8e8;
+            @include display(flex);
+            @include align-items(center);
+            border-bottom: 1px solid #ccc;
+
+            &:before {
+                @include flex(0 0 30px);
+                background-color: #e8e8e8;
+                display: block;
+                line-height: 30px;
+                text-align: center;
+                margin-right: 10px;
+                content: '\00a0';
+                border-right: 1px solid #ccc;
+            }
+            &:after {
+                display: block;
+                content: counter(column-counter, upper-alpha);
+                counter-increment: column-counter;
+                text-align: center;
+                @include flex-grow(1);
+            }
+        }
+
+
+        .si-column-manager-sample {
+            @include display(flex);
+            @include align-items(center);
+            border-bottom: 1px solid #ccc;
+
+            &:before {
+                @include flex(0 0 30px);
+                background-color: #e8e8e8;
+                display: block;
+                line-height: 30px;
+                text-align: center;
+                content: counter(sample-counter, decimal);
+                counter-increment: sample-counter;
+                margin-right: 10px;
+                border-right: 1px solid #ccc;
+                font-size: 1rem;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .si-column-manager-editor {
+        @include flex(0 0 300px);
+        padding: 20px;
+        position: relative;
+
+        input {
+            width: 100%;
+            font-family: inherit;
+            font-size: inherit;
+            height: 40px;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        .select-group {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            position: relative;
+            @include display(flex);
+            @include align-items(center);
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            background-color: white;
+            color: black;
+            border-radius: 3px;
+            height: 40px;
+
+            &:after {
+                font-family: Arrows;
+                content: '\e901';
+                margin-left: auto;
+                display: inline-block;
+                @include flex(0 0 auto);
+            }
+
+            select {
+                @include appearance(none);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+            }
+        }
+
+        label {
+            margin-bottom: 6px;
+            font-size: 20px;
+            font-weight: bold;
+            display: block;
+        }
+
+        &:after {
+            background: linear-gradient(-45deg, white 9px, transparent 0), linear-gradient(-135deg, white 9px, transparent 0),
+                        linear-gradient(-45deg, #ccc 10px, transparent 0), linear-gradient(-135deg, #ccc 10px, transparent 0);
+            background-position: left-bottom;
+            background-repeat: repeat-y;
+            background-size: 20px 20px;
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -20px;
+            width: 20px;
+            height: 100%;
+            bottom: 0;
+        }
+    }
+}

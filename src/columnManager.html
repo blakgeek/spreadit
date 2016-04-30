@@ -1,0 +1,31 @@
+<ul class="si-column-manager-columns">
+    <li ng-repeat="column in vm.preview track by $index" class="si-column-manager-column"
+        ng-class="{'si-column-ignored': column.mapping.property === '$skip$'}">
+
+        <ul class="si-column-manager-samples">
+            <li class="si-column-manager-sample-header"></li>
+            <li class="si-column-manager-sample si-column-manager-sample-title">{{column.header}}</li>
+            <li ng-repeat="sample in column.sample track by $index" class="si-column-manager-sample">
+                {{sample}}
+            </li>
+        </ul>
+        <div class="si-column-manager-editor">
+            <label>Import As</label>
+            <div class="select-group">
+                <span>{{column.mapping.title}}</span>
+                <select ng-options="title.title for title in vm.titles track by title.property"
+                        ng-model="column.mapping"></select>
+            </div>
+
+            <input ng-model="column.custom" ng-show="column.mapping.property === '$rename$'">
+        </div>
+    </li>
+</ul>
+<ul class="si-column-manager-actions">
+    <li>
+        <button class="negative" ng-click="vm.cancel()">Cancel</button>
+    </li>
+    <li>
+        <button class="positive" ng-click="vm.remap(vm.preview)">Import</button>
+    </li>
+</ul>

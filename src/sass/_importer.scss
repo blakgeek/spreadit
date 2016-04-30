@@ -1,0 +1,55 @@
+si-importer {
+    @include display(flex);
+    @include justify-content(center);
+    @include align-items(center);
+    height: 160px;
+    border: 1px #a0a0a0 dashed;
+    border-radius: 5px;
+    width: calc(100% - 40px);
+    max-width: 800px;
+    margin: 20px auto 30px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    background-color: white;
+    @include transition(box-shadow 350ms);
+
+    &:hover {
+        border-color: #303030;
+        box-shadow: 0 0 20px -4px rgba(0,0,0,.4);
+    }
+
+    .si-icon {
+        margin-left: 20px;
+        @include flex(0 0 65px);
+
+        path {
+            fill: #303030;
+        }
+    }
+
+    .message {
+
+        margin-right: 20px;
+        margin-left: 10px;
+        color: #303030;
+        font-weight: normal;
+        cursor: inherit;
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    }
+
+    input[type="file"] {
+        @include appearance(none);
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        cursor: inherit;
+    }
+}

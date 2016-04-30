@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spreadit Demo</title>
+    <link href="../dist/spreadIt.css" type="text/css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+        }
+        #examples {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        #examples button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        #results {
+            position: absolute;
+            top: 0;
+            left: 200px;
+            display: block;
+            box-sizing: border-box;
+            width: calc(100% - 200px);
+            margin: 0 auto;
+            height: calc(100%);
+        }
+    </style>
+</head>
+<body ng-app="demo" ng-controller="DemoCtrl as vm">
+<div id="examples">
+<button si-file-select="free">Default Config</button>
+<button si-file-select="headers">Columns Configured</button>
+<button si-file-select="excludeUnknown">Exclude Unknown Columns</button>
+<button si-file-select="sampleSize">Custom Sample Size</button>
+</div>
+<textarea id="results"></textarea>
+<si-column-manager si-id="sampleSize" si-change="vm.onChange($data, $file)" si-sample-size="5"></si-column-manager>
+<si-column-manager si-id="free" si-change="vm.onChange($data, $file)"></si-column-manager>
+<si-column-manager si-id="headers"
+                   si-change="vm.onChange($data, $file)"
+                   si-columns="vm.columns">
+</si-column-manager>
+<si-column-manager si-id="excludeUnknown"
+                   si-change="vm.onChange($data, $file)"
+                   si-columns="vm.columns"
+                   si-exclude-unknown-columns="true">
+</si-column-manager>
+<script src="../bower_components/lodash/dist/lodash.min.js"></script>
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="../bower_components/js-xlsx/dist/xlsx.full.min.js"></script>
+<script src="../bower_components/papaparse/papaparse.min.js"></script>
+<script src="../dist/spreadit.min.js"></script>
+<script>
+    angular.module('demo', ['bg.spreadit']).controller('DemoCtrl', function($scope) {
+
+        this.onChange = function(data, file) {
+            document.getElementById('results').value = JSON.stringify(data, null, '\t');
+        };
+
+        this.columns = [
+            {
+                title: 'First Name',
+                property: 'firstName',
+                aliases: ['fname', 'first']
+            },
+            {
+                title: 'Last Name',
+                property: 'lastName',
+                aliases: ['lname', 'last']
+            },
+            {
+                title: 'Email',
+                property: 'email',
+                aliases: ['e-mail', 'email address']
+            }
+        ]
+    });
+</script>
+</body>
+</html>

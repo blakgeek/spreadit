@@ -1,0 +1,16 @@
+@import 'bourbon/bourbon';
+@import 'columnManager';
+@import 'importer';
+
+$arrowFontsDir: '../fonts/arrows' !default;
+
+@font-face {
+    font-family: 'Arrows';
+    src:
+        url($arrowFontsDir + '/select-arrows.ttf?lym46w') format('truetype'),
+        url($arrowFontsDir + '/select-arrows.woff?lym46w') format('woff'),
+        url($arrowFontsDir + '/select-arrows.svg?lym46w#select-arrows') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
