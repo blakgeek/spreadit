@@ -40,10 +40,9 @@ HTML:
 ```
 Javascript:
 ```js
-//inject directives and services.
 var app = angular.module('superDopeDemo', ['bg.spreadit']);
 
-app.controller('MyCtrl', ['$scope', function ($scope, Upload) {
+app.controller('MyCtrl', ['$scope', function ($scope) {
 
     $scope.doStuffWithData = function(data, file, type) {
 
