@@ -1,11 +1,13 @@
 # Spreadit
-## An angular directive inspired by the guys at [Conference Badge](https://www.conferencebadge.com/) for importing a spreadsheet 100% in the browser.
+## Importing spreadsheet data simplified and 100% in the browser.
+
+ Spreadit is an angular directive inspired by the guys at [Conference Badge](https://www.conferencebadge.com/) that converts data fom Excel or CSV to JSON so it
+ can be used in the browser or uploaded to the server.  It supports header and column detection.  Users can also rename and ignore columns before importing the data.
 
 ![It's A Screenshot!](screenshot.png)
 ![It's Another Screenshot!](importer-screenshot.png)
 
-##<a name="install"></a> Install
-
+## <a name="install"></a> Install It
 * <a name="manual"></a>**Manual**: download latest from [here](https://github.com/blakgeek/spreadit/releases/latest)
 * <a name="bower"></a>**Bower**:
   * `bower install spreadit --save`
@@ -50,7 +52,7 @@ app.controller('MyCtrl', ['$scope', function ($scope, Upload) {
 }]);
 ```
 
-Working Examples:
+Checkout These Working Examples:
 * [Basic Example](https://jsfiddle.net/blakgeek/vumyL0x1/)
 * [Configure Columns](https://jsfiddle.net/blakgeek/q50cLjnz/)
 * [Restrict Columns](https://jsfiddle.net/blakgeek/y2yfqydp/)
