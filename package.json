@@ -1,7 +1,7 @@
 {
   "name": "spreadit",
   "version": "1.0.0",
-  "description": "A super cool spreadsheet importer",
+  "description": "Spreadsheet data importing simplified and 100% in the browser",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

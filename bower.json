@@ -1,6 +1,6 @@
 {
     "name": "spreadit",
-    "description": "A super cool spreadsheet importer",
+    "description": "Spreadsheet data importing simplified and 100% in the browser.",
     "main": [
         "dist/spreadit.min.js",
         "dist/spreadit.css"
