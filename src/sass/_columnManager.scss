@@ -84,7 +84,6 @@ si-column-manager {
     .si-column-manager-actions {
 
         @include display(flex);
-        @include justify-content(flex-end);
         @include align-items(center);
         width: calc(100% - 40px);
         max-width: 800px;
@@ -125,6 +124,16 @@ si-column-manager {
             border-radius: 4px;
         }
 
+    }
+
+    header.si-column-manager-actions {
+
+
+    }
+
+    footer.si-column-manager-actions {
+
+        @include justify-content(flex-end);
     }
 
     .si-column-manager-columns {
