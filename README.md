@@ -15,6 +15,7 @@ can be used in the browser or uploaded to the server.  It supports header and co
 * [Basic Example](https://jsfiddle.net/blakgeek/vumyL0x1/)
 * [Configure Columns](https://jsfiddle.net/blakgeek/q50cLjnz/)
 * [Restrict Columns](https://jsfiddle.net/blakgeek/y2yfqydp/)
+* [Post-process Data](https://jsfiddle.net/blakgeek/L4t7beeo/)
 
 ## Code Sample
 HTML:
@@ -35,6 +36,7 @@ HTML:
     si-exclude-unknown-columns="false"
     si-sample-size="5"
     si-allow-renaming="true"
+    si-post-processors="postProcessors"
     si-change="doStuffWithData($data, $file, $type)">
 </si-column-manager>
 ```

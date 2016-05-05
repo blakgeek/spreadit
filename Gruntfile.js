@@ -94,7 +94,7 @@ module.exports = function(grunt) {
                 files: ['src/**/*', 'example/**/*'],
                 tasks: 'dev',
                 options: {
-                    livereload: true
+                    livereload: false
                 }
             }
         },

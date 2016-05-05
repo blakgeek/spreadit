@@ -51,7 +51,8 @@
 <button si-file-select="free">Default Config</button>
 <button si-file-select="headers">Columns Configured</button>
 <button si-file-select="excludeUnknown">Exclude Unknown Columns</button>
-<button si-file-select="sampleSize">Custom Sample Size</button>
+    <button si-file-select="sampleSize">Custom Sample Size</button>
+    <button si-file-select="postProcess">Post-process Data</button>
 </div>
 <textarea id="results"></textarea>
 <footer>
@@ -67,6 +68,11 @@
                    si-change="vm.onChange($data, $file)"
                    si-columns="vm.columns"
                    si-exclude-unknown-columns="true">
+</si-column-manager>
+<si-column-manager si-id="postProcess"
+                   si-post-processors="vm.postProcessors"
+                   si-change="vm.onChange($data, $file)"
+                   si-columns="vm.columns">
 </si-column-manager>
 <script src="../bower_components/lodash/dist/lodash.min.js"></script>
 <script src="../bower_components/angular/angular.min.js"></script>
@@ -97,7 +103,27 @@
                 property: 'firstName',
                 aliases: ['first_name', 'first']
             }
+        ];
+
+        this.postProcessors = [
+            function(data) {
+                if(data.firstName || data.last_name) {
+                    data.fullName = data.firstName + ' ' + data.last_name;
+                }
+                delete data.firstName;
+                delete data.last_name;
+
+                return data;
+            },
+            function(data) {
+                if(data.fullName) {
+                    data.fullName = data.fullName.toUpperCase();
+                }
+                return data;
+            }
         ]
+
+
     });
 </script>
 </body>

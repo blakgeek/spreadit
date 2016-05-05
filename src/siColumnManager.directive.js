@@ -20,12 +20,12 @@
                 allowRenaming: '=?siAllowRenaming',
                 // TODO: add support for these flags
                 unknownColumnsGroupName: '=?siUnknownColumnsGroupName',
-                groupUnknownColumns: '=?siGroupUnknownColumns'
+                groupUnknownColumns: '=?siGroupUnknownColumns',
+                postProcessors: '=?siPostProcessors'
             },
             controller: ['$scope', '$element', '$attrs', controller],
             controllerAs: 'vm',
-            templateUrl: '/columnManager.html',
-            link: link
+            templateUrl: '/columnManager.html'
         };
 
         function controller($scope, $element, $attrs) {
@@ -33,6 +33,7 @@
             _.defaults($scope, {
                 id: "",
                 columns: [],
+                postProcessors: [],
                 sampleSize: 3,
                 excludeUnknownColumns: false,
                 allowCustomRenaming: true,
@@ -284,10 +285,11 @@
                     return result;
                 });
 
+
                 $scope.callback({
                     $type: 'excel',
                     $file: $file,
-                    $data: data
+                    $data: postProcess(data)
                 });
             }
 
@@ -314,8 +316,8 @@
                         });
                         $scope.callback({
                             $type: 'csv',
-                            $data: data,
-                            $file: $file
+                            $file: $file,
+                            $data: postProcess(data)
                         });
                     }
                 });
@@ -418,10 +420,21 @@
                     $element.addClass('active');
                 }
             });
-        }
 
-        function link($scope, $element, $attrs, controller) {
+            function postProcess(data) {
 
+                if(!$scope.postProcessors.length) {
+                    return data;
+                }
+
+                return data.map(function(obj) {
+
+                    $scope.postProcessors.forEach(function(fn) {
+                        fn(obj);
+                    });
+                    return obj;
+                })
+            }
         }
     }
 
