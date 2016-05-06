@@ -2,7 +2,7 @@
     "name": "spreadit",
     "description": "Spreadsheet data importing simplified and 100% in the browser.",
     "main": [
-        "dist/spreadit.min.js",
+        "dist/spreadit.js",
         "dist/spreadit.css"
     ],
     "authors": [
