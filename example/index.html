@@ -9,10 +9,12 @@
         html, body {
             height: 100%;
         }
+
         body {
             margin: 0;
             font-family: 'Open Sans', sans-serif;
         }
+
         #examples {
             position: absolute;
             top: 0;
@@ -21,10 +23,12 @@
             box-sizing: border-box;
             padding: 10px;
         }
+
         #examples button {
             width: 100%;
             margin-bottom: 10px;
         }
+
         #results {
             position: absolute;
             top: 0;
@@ -35,28 +39,31 @@
             margin: 0 auto;
             height: calc(100% - 200px);
         }
+
         body > footer {
             position: absolute;
             bottom: 0;
             width: 100%;
             padding: 20px;
         }
-        si-importer {
+
+        si-dropzone {
             margin: auto;
         }
     </style>
 </head>
 <body ng-app="demo" ng-controller="DemoCtrl as vm">
 <div id="examples">
-<button si-file-select="free">Default Config</button>
-<button si-file-select="headers">Columns Configured</button>
-<button si-file-select="excludeUnknown">Exclude Unknown Columns</button>
-    <button si-file-select="sampleSize">Custom Sample Size</button>
+    <button si-trigger="free">Default Config</button>
+    <button si-trigger="headers">Columns Configured</button>
+    <button si-trigger="excludeUnknown">Exclude Unknown Columns</button>
+    <button si-trigger="sampleSize">Custom Sample Size</button>
+    <!-- si-file-select is an alias for si-trigger -->
     <button si-file-select="postProcess">Post-process Data</button>
 </div>
 <textarea id="results"></textarea>
 <footer>
-    <si-importer si-id="free"></si-importer>
+    <si-dropzone si-id="free"></si-dropzone>
 </footer>
 <si-column-manager si-id="sampleSize" si-change="vm.onChange($data, $file)" si-sample-size="5"></si-column-manager>
 <si-column-manager si-id="free" si-change="vm.onChange($data, $file)"></si-column-manager>
@@ -80,9 +87,9 @@
 <script src="../bower_components/papaparse/papaparse.min.js"></script>
 <script src="../dev/spreadit.js"></script>
 <script>
-    angular.module('demo', ['bg.spreadit']).controller('DemoCtrl', function($scope) {
+    angular.module('demo', ['bg.spreadit']).controller('DemoCtrl', function ($scope) {
 
-        this.onChange = function(data, file) {
+        this.onChange = function (data, file) {
             document.getElementById('results').value = JSON.stringify(data, null, '\t');
         };
 
@@ -106,8 +113,8 @@
         ];
 
         this.postProcessors = [
-            function(data) {
-                if(data.firstName || data.last_name) {
+            function (data) {
+                if (data.firstName || data.last_name) {
                     data.fullName = data.firstName + ' ' + data.last_name;
                 }
                 delete data.firstName;
@@ -115,15 +122,13 @@
 
                 return data;
             },
-            function(data) {
-                if(data.fullName) {
+            function (data) {
+                if (data.fullName) {
                     data.fullName = data.fullName.toUpperCase();
                 }
                 return data;
             }
         ]
-
-
     });
 </script>
 </body>

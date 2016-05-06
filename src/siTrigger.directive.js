@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('bg.spreadit').directive("siFileSelect", ['$rootScope', directive]);
+    angular.module('bg.spreadit').directive("siTrigger", ['$rootScope', directive]);
 
     function directive($rootScope) {
         var accepts = [];

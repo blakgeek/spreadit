@@ -447,7 +447,56 @@
 +function () {
     'use strict';
 
+    angular.module('bg.spreadit').directive("siDropzone", ['$rootScope', directive]);
+    angular.module('bg.spreadit').directive("siImporter", ['$rootScope', directive]);
+
+    function directive($rootScope) {
+        var accepts = [];
+
+        if(!!(window.XLSX && XLSX.utils)) {
+            accepts.push('.xls', '.xlsx');
+        }
+
+        if(!!(window.Papa && Papa.parse)) {
+            accepts.push('.csv', '.tsv', '.txt');
+        }
+
+        return {
+            restrict: 'E',
+            scope: {
+                id: '@siId'
+            },
+            controller: controller,
+            controllerAs: 'vm',
+            templateUrl: '/dropzone.html',
+            link: link
+        };
+
+        function controller() {
+
+        }
+
+        function link($scope, $element, $attrs) {
+
+            _.defaults($scope, {
+                id: ""
+            });
+
+            var element = $element[0];
+            element.setAttribute('accepts', accepts.join());
+            element.querySelector('input[type="file"]').addEventListener('change', function (e) {
+                $rootScope.$emit('si.preview', $scope.id, e.target.files[0]);
+            });
+        }
+    }
+
+}();
+
++function () {
+    'use strict';
+
     angular.module('bg.spreadit').directive("siFileSelect", ['$rootScope', directive]);
+    angular.module('bg.spreadit').directive("siTrigger", ['$rootScope', directive]);
 
     function directive($rootScope) {
         var accepts = [];
@@ -507,53 +556,6 @@
 +function () {
     'use strict';
 
-    angular.module('bg.spreadit').directive("siImporter", ['$rootScope', directive]);
-
-    function directive($rootScope) {
-        var accepts = [];
-
-        if(!!(window.XLSX && XLSX.utils)) {
-            accepts.push('.xls', '.xlsx');
-        }
-
-        if(!!(window.Papa && Papa.parse)) {
-            accepts.push('.csv', '.tsv', '.txt');
-        }
-
-        return {
-            restrict: 'E',
-            scope: {
-                id: '@siId'
-            },
-            controller: controller,
-            controllerAs: 'vm',
-            templateUrl: '/importer.html',
-            link: link
-        };
-
-        function controller() {
-
-        }
-
-        function link($scope, $element, $attrs) {
-
-            _.defaults($scope, {
-                id: ""
-            });
-
-            var element = $element[0];
-            element.setAttribute('accepts', accepts.join());
-            element.querySelector('input[type="file"]').addEventListener('change', function (e) {
-                $rootScope.$emit('si.preview', $scope.id, e.target.files[0]);
-            });
-        }
-    }
-
-}();
-
-+function () {
-    'use strict';
-
     angular.module('bg.spreadit').service("Spreadit", ['$rootScope', service]);
 
     function service($rootScope) {
@@ -570,7 +572,7 @@ angular.module('bg.spreadit').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/importer.html',
+  $templateCache.put('/dropzone.html',
     "<svg class=\"si-icon\" xmlns=\"http://www.w3.org/2000/svg\" height=\"65px\" viewBox=\"0 0 55 65\"><path d=\"M55,22C55,22,55,22,55,22c0-0.2-0.1-0.4-0.2-0.6c0,0,0-0.1-0.1-0.1c-0.1-0.2-0.2-0.4-0.4-0.5l-20-20\n" +
     "    	c-0.2-0.2-0.3-0.3-0.5-0.4c0,0-0.1-0.1-0.1-0.1C33.4,0.2,33.2,0.1,33,0c0,0,0,0,0,0c-0.2,0-0.3,0-0.5,0h-25C3.4,0,0,3.4,0,7.5v50\n" +
     "    	C0,61.6,3.4,65,7.5,65h40c4.1,0,7.5-3.4,7.5-7.5v-35C55,22.3,55,22.2,55,22z M46.5,20h-9c-1.4,0-2.5-1.1-2.5-2.5v-9l5.7,5.7L46.5,20\n" +

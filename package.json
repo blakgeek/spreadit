@@ -1,6 +1,6 @@
 {
     "name": "spreadit",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Spreadsheet data importing simplified and 100% in the browser",
     "main": "Gruntfile.js",
     "scripts": {
