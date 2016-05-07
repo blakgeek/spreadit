@@ -31,6 +31,10 @@
             var isFileInput = tagName === 'input' && $attrs.type && $attrs.type.toLowerCase() === 'file';
             var isLink = tagName === 'a';
 
+            if(angular.isDefined($attrs.siFileSelect)) {
+                $scope.id = $attrs.siFileSelect;
+            }
+
             if (!isFileInput) {
                 fileEl = angular.element('<input type="file">');
                 var label = angular.element('<label>upload</label>');
