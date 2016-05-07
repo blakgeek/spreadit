@@ -512,7 +512,7 @@
         return {
             restrict: 'EA',
             scope: {
-                id: '@?siFileSelect'
+                id: '@?siTrigger'
             },
             link: link
         };
