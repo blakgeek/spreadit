@@ -12,10 +12,10 @@ can be used in the browser or uploaded to the server.  It supports header and co
 * <a name="npm"></a>**NPM**: `npm install spreadit`
 
 ## See It In Action
-* [Basic Example](https://jsfiddle.net/blakgeek/vumyL0x1/)
-* [Configure Columns](https://jsfiddle.net/blakgeek/q50cLjnz/)
-* [Restrict Columns](https://jsfiddle.net/blakgeek/y2yfqydp/)
-* [Post-process Data](https://jsfiddle.net/blakgeek/L4t7beeo/)
+* [Basic Example](https://jsfiddle.net/blakgeek/vumyL0x1/show)
+* [Configure Columns](https://jsfiddle.net/blakgeek/q50cLjnz/show)
+* [Restrict Columns](https://jsfiddle.net/blakgeek/y2yfqydp/show)
+* [Post-process Data](https://jsfiddle.net/blakgeek/L4t7beeo/show)
 
 ## Code Sample
 HTML:
